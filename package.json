@@ -4,8 +4,7 @@
   "description": "Projeto de Perguntas e Respostas",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "start-server-ts": "nodemon server.ts",
+    "start": "nodemon server.ts",
     "build": "npx tsc"
   },
   "author": "Saulo Couto",

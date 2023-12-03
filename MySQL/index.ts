@@ -4,7 +4,7 @@ class DataBase{
     database: Sequelize;
 
     constructor(){
-        this.database = new Sequelize("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"})
+        this.database = new Sequelize("guiaperguntas", "*******", "******", {host: "localhost", dialect: "mysql"})
     }
 
     async Auth(): Promise<void> {

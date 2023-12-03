@@ -1,0 +1,105 @@
+body {
+    background-color: #3D5454;
+}
+.title3 {
+    color: #324040;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.imagem {
+    width: 100px;
+    height: 50px;
+}
+
+.form {
+    margin-top: 10vh;
+}
+.card {
+    background-color: #30B8B8;
+}
+.btn, .btn:hover, .btn:active {
+    background-color: #3D5454;
+    color: white;
+    border: none;
+    box-shadow: 0 0 3px white;
+}
+
+.btn-main, .btn-main:hover, .btn-main:active {
+    background-color: #30B8B8;
+}
+
+.title {
+    background-color: #30B8B8;
+    color: #324040;
+    padding: 10px;
+    border-radius: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.title-ask {
+    color: #324040;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.titleIdAsk {
+    color: #324040;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.card-IdAsk {
+    margin-top: 4%;
+}
+.text-Id {
+    color: #0F1724;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.resp {
+    background-color: #3D5454;
+    color: #fff;
+    padding: 10px;
+    width: 15%;
+    border-radius: 10px;
+    margin-top: 2%;
+}
+
+summary {
+    list-style: none;
+}
+summary:after {
+    background: #3D5454;
+    content: "Exibir respostas";
+    color: #fff;
+    float: left; 
+    text-align: center;
+    width: 11%;
+    border-radius: 5px;
+    box-shadow: 0 0 3px white;
+    padding: 2px;
+}
+details[open] summary:after {
+    background: #3D5454;
+    content: "Ocultar respostas";
+    color: #fff;
+    float: left;
+    text-align: center;
+    width: 12%;
+    border-radius: 5px;
+    box-shadow: 0 0 3px white;
+    padding: 2px;
+}
+.bodyRes {
+    background-color: #3D5454;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: solid 1px white;
+}
+
+.p-index {
+    padding: 10px;
+    background-color: #3D5454;
+    border-radius: 10px;
+    border: solid 1px white;
+    color: #fff;
+}
+
+

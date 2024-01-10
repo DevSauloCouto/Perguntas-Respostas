@@ -6,15 +6,15 @@ class ResponseRepository {
 
     }
 
-    async saveResponse(body: string, idAsk: number): Promise<ResponseAsk> {
+    async save(body: string, idAsk: number): Promise<ResponseAsk> {
         return await ResponseAsk.create({body, idAsk});
     }
 
-    async listAllResponses(): Promise<Array<ResponseAsk>> {
+    async findAll(): Promise<Array<ResponseAsk>> {
         return await ResponseAsk.findAll({ raw: true, attributes: ['body', 'idAsk', 'createdAt'] })
     }
 
-    async listOneResponse(id: number): Promise<ResponseAsk|null> {
+    async findById(id: number): Promise<ResponseAsk|null> {
         return await ResponseAsk.findOne({ where: { id: id } })
     }
 

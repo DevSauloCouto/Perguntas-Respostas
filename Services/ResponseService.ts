@@ -9,16 +9,16 @@ class ResponseService {
 
     }
 
-    async saveResponse(body: string, idAsk: number): Promise<ResponseAsk> {
-        return await this.responseRepository.saveResponse(body, idAsk);
+    async save(body: string, idAsk: number): Promise<ResponseAsk> {
+        return await this.responseRepository.save(body, idAsk);
     }
 
-    async listAllResponses(): Promise<Array<ResponseAsk>> {
-        return await this.responseRepository.listAllResponses();
+    async findAll(): Promise<Array<ResponseAsk>> {
+        return await this.responseRepository.findAll();
     }
 
-    async listOneResponse(id: number): Promise<ResponseAsk|null> {
-        return await this.responseRepository.listOneResponse(id);
+    async findById(id: number): Promise<ResponseAsk|null> {
+        return await this.responseRepository.findById(id);
     }
 
 }

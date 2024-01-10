@@ -9,16 +9,28 @@ class AskService {
     }
 
 
-    async saveAsk(title: string, description: string): Promise<Ask> {
-        return await this.askRepository.saveAsk(title, description)
+    async save(title: string, description: string): Promise<Ask|unknown> {
+        try {
+
+            return await this.askRepository.save(title, description);
+        
+        } catch(err){
+            return {
+                message: "Bad Request, Consult the Documentation",
+                status: 400,
+                timestamp: new Date(),
+                details: err
+            };
+        }
+
     }
 
-    async listAllAsks(): Promise<Array<Ask>> {
-        return await this.askRepository.listAllAsks();
+    async findAll(): Promise<Array<Ask>> {
+        return await this.askRepository.findAll();
     }
 
-    async listOneAsk(id: number): Promise<Ask|null> {
-        return await this.askRepository.listOneAsk(id);
+    async findById(id: number): Promise<Ask|null> {
+        return await this.askRepository.findById(id);
         
     }
 

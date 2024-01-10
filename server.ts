@@ -1,39 +1,31 @@
 import express from "express";
 import { routes } from "./routes";
 import bodyParser from "body-parser";
-import { DataBase } from "./MySQL/index";
+import { DataBaseConfiguration } from "./Database/DataBaseConfiguration";
 
-class App{
+class App {
     
-    server: express.Application;
+    private static server: express.Application = express();
+    private static port: number = 80;
 
-    constructor(){
-        this.server = express();
-        this.configEjs();
-        this.configStatic();
-        this.configBodyParser();
-        this.Routes();
+    public static listenServer(): void {
+        App.server.listen(App.port, () => console.log("Server Running"))
     }
 
-    configEjs(): void {
-        this.server.set("view engine", "ejs");
+    public static configBodyParser(): void {
+        App.server.use(bodyParser.urlencoded({extended: false}));
+        App.server.use(bodyParser.json());
     }
 
-    configStatic(): void {
-        this.server.use(express.static("public"));
-    }
-
-    configBodyParser(): void {
-        this.server.use(bodyParser.urlencoded({extended: false}));
-        this.server.use(bodyParser.json());
-    }
-
-    Routes(): void {
-        this.server.use(routes);
+    public static useRoutes(): void {
+        App.server.use(routes);
     }
 
 }
 
-new DataBase().Auth();
+DataBaseConfiguration.instanceSequelize("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"})
+DataBaseConfiguration.authDataBase();
 
-new App().server.listen(80, () => console.log("Servidor Typescript rodando"));
+App.listenServer();
+App.configBodyParser()
+App.useRoutes()

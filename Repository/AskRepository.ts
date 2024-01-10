@@ -6,15 +6,15 @@ class AskRepository {
 
     }
 
-    async saveAsk(title: string, description: string): Promise<Ask> {
+    async save(title: string, description: string): Promise<Ask> {
         return await Ask.create({title, description})
     }
 
-    async listAllAsks(): Promise<Array<Ask>> {
+    async findAll(): Promise<Array<Ask>> {
         return await Ask.findAll({ raw: true, order: [['id', 'DESC']], attributes: ['id', 'title', 'description', 'createdAt'] })
     }
 
-    async listOneAsk(id: number): Promise<Ask|null> {
+    async findById(id: number): Promise<Ask|null> {
         return await Ask.findOne({ where: { id: id } });
     }
 

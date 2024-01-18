@@ -6,9 +6,13 @@ interface ConfigHostDialect {
 }
 
 class DataBaseConfiguration {
-    private static SEQUELIZE: Sequelize;
+    private SEQUELIZE: Sequelize;
 
-    public static async authDataBase(): Promise<void> {
+    constructor(database: string, user: string, password: string, hostAndDialect: ConfigHostDialect){
+        this.SEQUELIZE = new Sequelize(database, user, password, hostAndDialect);
+    }
+
+    public async authDataBase(): Promise<void> {
         try{
             await this.SEQUELIZE.authenticate();
             console.log("Connection Database Success");
@@ -17,12 +21,7 @@ class DataBaseConfiguration {
         }
     }
 
-    public static getSequelize(): Sequelize {
-        return this.SEQUELIZE;
-    }
-
-    public static instanceSequelize(database: string, user: string, password: string, hostAndDialect: ConfigHostDialect): Sequelize {
-        this.SEQUELIZE = new Sequelize(database, user, password, hostAndDialect)
+    public getSequelize(): Sequelize {
         return this.SEQUELIZE;
     }
 

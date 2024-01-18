@@ -1,3 +1,4 @@
+import { ResponseDTO } from "../DTOs/ResponseDTO";
 import ResponseAsk from "../Entities/Response";
 import { ResponseRepository } from "../Repository/ResponseRepository";
 
@@ -9,7 +10,7 @@ class ResponseService {
 
     }
 
-    async save(body: string, idAsk: number): Promise<ResponseAsk> {
+    async save({body, idAsk}: ResponseDTO): Promise<ResponseAsk> {
         return await this.responseRepository.save(body, idAsk);
     }
 

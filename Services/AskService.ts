@@ -1,3 +1,4 @@
+import { AskDTO } from "../DTOs/AskDTO";
 import Ask from "../Entities/Ask"
 import { AskRepository } from "../Repository/AskRepository"
 
@@ -9,27 +10,15 @@ class AskService {
     }
 
 
-    async save(title: string, description: string): Promise<Ask|unknown> {
-        try {
-
-            return await this.askRepository.save(title, description);
-        
-        } catch(err){
-            return {
-                message: "Bad Request, Consult the Documentation",
-                status: 400,
-                timestamp: new Date(),
-                details: err
-            };
-        }
-
+    async save({title, description}: AskDTO): Promise<Ask> {
+        return await this.askRepository.save(title, description);
     }
 
     async findAll(): Promise<Array<Ask>> {
         return await this.askRepository.findAll();
     }
 
-    async findById(id: number): Promise<Ask|null> {
+    async findById(id: number): Promise<Ask | null> {
         return await this.askRepository.findById(id);
         
     }

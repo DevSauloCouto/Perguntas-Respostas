@@ -1,31 +1,37 @@
-import express from "express";
+import express, { Application } from "express";
 import { routes } from "./routes";
 import bodyParser from "body-parser";
 import { DataBaseConfiguration } from "./Database/DataBaseConfiguration";
 
 class App {
     
-    private static server: express.Application = express();
-    private static port: number = 80;
+    private server: Application;
+    private port: number = 8080;
 
-    public static listenServer(): void {
-        App.server.listen(App.port, () => console.log("Server Running"))
+    constructor(){
+        this.server = express();
+        this.listenServer();
+        this.configBodyParser();
+        this.useRoutes();
     }
 
-    public static configBodyParser(): void {
-        App.server.use(bodyParser.urlencoded({extended: false}));
-        App.server.use(bodyParser.json());
+    public listenServer(): void {
+        this.server.listen(this.port, () => console.log("Server Running"))
     }
 
-    public static useRoutes(): void {
-        App.server.use(routes);
+    public configBodyParser(): void {
+        this.server.use(bodyParser.urlencoded({extended: false}));
+        this.server.use(bodyParser.json());
+    }
+
+    public useRoutes(): void {
+        this.server.use(routes);
     }
 
 }
 
-DataBaseConfiguration.instanceSequelize("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"})
-DataBaseConfiguration.authDataBase();
+const database = new DataBaseConfiguration("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"});
 
-App.listenServer();
-App.configBodyParser()
-App.useRoutes()
+database.authDataBase();
+
+const application = new App();

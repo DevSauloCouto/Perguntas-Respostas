@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ResponseService } from "../Services/ResponseService";
 import ResponseAsk from "../Entities/Response";
+import { ResponseDTO } from "../DTOs/ResponseDTO";
 
 class ResponseController {
 
@@ -8,9 +9,9 @@ class ResponseController {
 
     async saveResponse(req: Request, res: Response) {
         try {
-            const { body, idAsk } = req.body
+            const { body, idAsk } = req.body;
 
-            const response: ResponseAsk = await this.responseService.saveResponse(body, idAsk);
+            const response: ResponseAsk = await this.responseService.save(new ResponseDTO(body, idAsk));
 
             res.status(201).json({response})
         } catch (err) {
@@ -20,7 +21,7 @@ class ResponseController {
 
     async listAllResponses(req: Request, res: Response) {
         try {
-            const allResponses = await this.responseService.listAllResponses();
+            const allResponses = await this.responseService.findAll();
 
             res.status(200).json({allResponses})
         } catch(err) {
@@ -30,10 +31,10 @@ class ResponseController {
 
     async listOneResponse(req: Request, res: Response) {
         const { id } = req.params;
-        const response: ResponseAsk|null = await this.responseService.listOneResponse(parseInt(id));
+        const response: ResponseAsk|null = await this.responseService.findById(parseInt(id));
 
         if(!response) {
-            return res.status(404).json({error: "Not found Response by ID"});
+            return res.status(404).json({error: `Response ${id} not found`});
         }
 
         res.status(200).json({response});

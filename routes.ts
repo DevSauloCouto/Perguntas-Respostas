@@ -5,7 +5,7 @@ import { ResponseController } from "./Controllers/ResponseController";
 const routes: Router = Router();
 
 
-routes.get("/api/ask-response", async (req: Request, res: Response) => {
+routes.get("/api/ask", async (req: Request, res: Response) => {
     return await new AskController().listAllAsks(req, res)
 })
 

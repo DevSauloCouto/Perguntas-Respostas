@@ -1,20 +1,15 @@
-import { Dialect, Sequelize } from "sequelize";
-
-interface ConfigHostDialect {
-    host: string;
-    dialect: Dialect;
-}
+import { Sequelize } from "sequelize";
 
 class DataBaseConfiguration {
-    private SEQUELIZE: Sequelize;
+    private sequelize: Sequelize;
 
-    constructor(database: string, user: string, password: string, hostAndDialect: ConfigHostDialect){
-        this.SEQUELIZE = new Sequelize(database, user, password, hostAndDialect);
+    constructor(){
+        this.sequelize = new Sequelize("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"});
     }
 
     public async authDataBase(): Promise<void> {
         try{
-            await this.SEQUELIZE.authenticate();
+            await this.sequelize.authenticate();
             console.log("Connection Database Success");
         }catch(err){
             console.log(err);
@@ -22,7 +17,7 @@ class DataBaseConfiguration {
     }
 
     public getSequelize(): Sequelize {
-        return this.SEQUELIZE;
+        return this.sequelize;
     }
 
 }

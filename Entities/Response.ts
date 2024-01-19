@@ -1,7 +1,7 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { DataBaseConfiguration } from "../Database/DataBaseConfiguration";
 
-const database = new DataBaseConfiguration("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"});
+const database = new DataBaseConfiguration();
 
 database.getSequelize()
     .sync()

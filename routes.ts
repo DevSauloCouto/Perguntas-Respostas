@@ -17,6 +17,10 @@ routes.post("/api/ask", async (req: Request, res: Response) => {
     return await new AskController().saveAsk(req, res);
 })
 
+routes.get("/api/response", async (req: Request, res: Response) => {
+    return await new ResponseController().listAllResponses(req, res);
+})
+
 routes.post("/api/response", async (req: Request, res: Response) => {
     return await new ResponseController().saveResponse(req, res);
 })

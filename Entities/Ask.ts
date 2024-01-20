@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
-import { DataBaseConfiguration } from "../Database/DataBaseConfiguration";
+import { DataBase } from "../Database/DataBase";
 
-const database = new DataBaseConfiguration();
+const database = new DataBase("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"});
 
-database.getSequelize()
+database.getDatabase()
     .sync()
     .then(() => {
         console.log("Table syncron success")
@@ -43,7 +43,7 @@ Ask.init(
         }
     },
     {
-        sequelize: database.getSequelize(),
+        sequelize: database.getDatabase(),
         tableName: "tb_ask"
     }
 )

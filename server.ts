@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import { routes } from "./routes";
 import bodyParser from "body-parser";
-import { DataBaseConfiguration } from "./Database/DataBaseConfiguration";
+import { DataBase } from "./Database/DataBase";
 
 class App {
     
@@ -30,8 +30,8 @@ class App {
 
 }
 
-const database = new DataBaseConfiguration("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"});
+const database = new DataBase("guiaperguntas", "root", "admin#$SL", {host: "localhost", dialect: "mysql"});
 
-database.authDataBase();
+database.connect();
 
 const application = new App();

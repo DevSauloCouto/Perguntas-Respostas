@@ -10,8 +10,8 @@ class ResponseService {
 
     }
 
-    async save({body, idAsk}: ResponseDTO): Promise<ResponseAsk> {
-        return await this.responseRepository.save(body, idAsk);
+    async save(responseDto: ResponseDTO): Promise<ResponseAsk> {
+        return await this.responseRepository.save(responseDto.getBody(), responseDto.getIdAsk());
     }
 
     async findAll(): Promise<Array<ResponseAsk>> {

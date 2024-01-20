@@ -3,15 +3,15 @@ import Ask from "../Entities/Ask"
 import { AskRepository } from "../Repository/AskRepository"
 
 class AskService {
+    
     private askRepository: AskRepository = new AskRepository();
 
     constructor() {
 
     }
 
-
-    async save({title, description}: AskDTO): Promise<Ask> {
-        return await this.askRepository.save(title, description);
+    async save(askDto: AskDTO): Promise<Ask> {
+        return await this.askRepository.save(askDto.getTitle(), askDto.getDescription());
     }
 
     async findAll(): Promise<Array<Ask>> {
